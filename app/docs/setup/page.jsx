@@ -1,7 +1,7 @@
 import { Arima, Fira_Code, Inter, Quicksand, Roboto } from "next/font/google";
-import Navbar from "../navbar";
+import Navbar from "../../navbar";
 import Link from "next/link";
-import CodeBlock from "../codeblock";
+import CodeBlock from "../../codeblock";
 
 const fira_code = Fira_Code({
   subsets: ["latin"],
@@ -23,7 +23,7 @@ const quicksand_font = Quicksand({
   subsets: ["latin"],
 });
 
-export default function Docs() {
+export default function Setup() {
   return (
     <div className="h-screen bg-black text-white">
       <div className="grid grid-cols-12 h-full w-full">
@@ -38,28 +38,28 @@ export default function Docs() {
 
             <div className="mt-4 text-gray-300 flex flex-col gap-3">
               <Link
-                href={"#"}
-                className="hover:text-white py-2 bg-gray-500/20 px-4 rounded-r-lg border-l-2 border-l-transparent hover:border-l-gray-500"
+                href={"/docs/setup"}
+                className="text-white py-2 bg-gray-500/20 px-4 rounded-r-lg border-l-2 border-l-gray-500"
               >
                 Setup and Installation
               </Link>
 
               <Link
-                href={"#"}
+                href={"/docs/environment"}
                 className="hover:text-white py-2 bg-gray-500/20 px-4 rounded-r-lg border-l-2 border-l-transparent hover:border-l-gray-500"
               >
                 Setting up Environment
               </Link>
 
               <Link
-                href={"#"}
+                href={"/docs/first-program"}
                 className="hover:text-white py-2 bg-gray-500/20 px-4 rounded-r-lg border-l-2 border-l-transparent hover:border-l-gray-500"
               >
                 First Program
               </Link>
 
               <Link
-                href={"#"}
+                href={"/docs/integration"}
                 className="hover:text-white py-2 bg-gray-500/20 px-4 rounded-r-lg border-l-2 border-l-transparent hover:border-l-gray-500"
               >
                 Integrating with C++
@@ -116,109 +116,110 @@ export default function Docs() {
           </div>
           <div className="row-span-11 px-16 py-16">
             <h1 className={`${inter_font.className} text-4xl text-gray-300`}>
-              Welcome to Sunflower
+              Setup and Installation
             </h1>
             <div className="h-1 w-24 rounded-full mt-4 bg-gray-400"></div>
-            <h2 className="mt-4 text-slate-400 italic">Sun Aug 3, 2025</h2>
+            <h2 className="mt-4 text-slate-400 italic">Fri Aug 22, 2025</h2>
 
             <p
               className={`mt-8 max-w-2/3 text-lg text-gray-300/80 ${inter_font.className}`}
             >
-              Sunflower is a dynamically-typed, memory-safe, Turing-complete
-              programming language designed to streamline scripting and
-              automation tasks. It offers seamless integration with{" "}
-              <span className="font-mono text-green-600 underline cursor-pointer">
-                C++
-              </span>
-              , enabling developers to offload specific tasks to Sunflower,
-              thereby optimizing performance and reducing the workload on{" "}
-              <span className="font-mono text-green-600 underline cursor-pointer">
-                C++
-              </span>
-              .
+              Sunflower is an open source language that invites contributions
+              from all over the world. It was built as a hobby project because I
+              love working with languages and I wanted to bring the best
+              features of different languages into one intuitive and self
+              sufficient language (almost no dependence on third party
+              libraries)
             </p>
 
             <p
               className={`mt-6 max-w-2/3 text-lg text-gray-300/80 ${inter_font.className}`}
             >
-              The advent of Sunflower began as a notion to make a language which
-              would allow developers to write more code in fewer lines. This
-              practice is often discouraged, thus the language syntax is kept
-              extremely simple so even compound statements appear comprehensible
-              at a glance.
+              The project and it&apos;s source tree is available on Github as a
+              C++/CMake project. The{" "}
+              <span className="text-green-600 bg-gray-800 px-1 rounded-sm">
+                main
+              </span>{" "}
+              branch stores the current iteration of the language being
+              developed. Different branches exist for different production-ready
+              versions of Sunflower.
+              <br />
+              <br />
+              At the time of writing this article, there is no production-ready
+              release of the language and the only important branch is the{" "}
+              <span className="text-green-600 bg-gray-800 px-1 rounded-sm">
+                main
+              </span>{" "}
+              branch — which is not, and never will be, production-ready.
             </p>
 
             <div
               className={`mt-6 max-w-2/3 text-lg text-gray-300/80 ${inter_font.className}`}
             >
-              For example, here is a solution of the{" "}
-              <span className="text-green-600 underline">
-                Travelling Salesman
-              </span>{" "}
-              problem, written without utilizing much of the libraries:
+              For building from source, you can clone/fork the
+              <Link href={"https://github.com/shrehanrajsingh/sunflower-cpp"}>
+                Github repository
+              </Link>{" "}
+              and build as a CMake project.
+              <br />
+              <p
+                className={`mt-6 max-w-2/3 text-lg text-gray-300/80 ${inter_font.className}`}
+              >
+                Clone the repository:
+              </p>
               <CodeBlock>
-                {`# Travelling Salesman Problem
-# Time: O(n!), Space: O(n)
-fun min (a, b)
-    if a < b
-        return a
-    return b
-
-fun total_cost (mask, pos, n, cost)
-    if mask == (1 << n) - 1
-        return cost[pos][0]
-    
-    ans = 1000000
-    for i in 0 to n
-        if not (mask & (1 << i))
-            ans = min (ans, cost[pos][i] + total_cost (
-                mask | (1 << i), i, n, cost
-            ))
-    
-    return ans
-
-fun tsp (cost, n)
-    return total_cost (1, 0, n, cost)
-
-cost = [
-    [0, 10, 15, 20],
-    [10, 0, 35, 25],
-    [15, 35, 0, 30],
-    [20, 25, 30, 0]
-]
-
-write (tsp (cost, 4))
-                  `}
+                $ git clone https://github.com/shrehanrajsingh/sunflower-cpp.git
               </CodeBlock>
               <p
                 className={`mt-6 max-w-2/3 text-lg text-gray-300/80 ${inter_font.className}`}
               >
-                Run it as follows:
+                Make the build directory:
               </p>
-              <CodeBlock>$ sf tsp.sf</CodeBlock>
+              <CodeBlock>$ mkdir build && cd build</CodeBlock>
+              <CodeBlock>
+                $ cmake --build .. --config Debug --target all -j4
+              </CodeBlock>
               <p
+                className={`mt-6 text-lg text-gray-300/80 ${inter_font.className}`}
+              >
+                Sunflower executable will be present in{" "}
+                <span className="text-green-600 bg-gray-800 px-1 rounded-sm font-mono">
+                  build/bin
+                </span>{" "}
+                . You can also download from the Github repository&apos;s
+                release sections. It has executables and installers for
+                different Operating Systems.
+                <br />
+                <span className="text-green-600 bg-gray-800 rounded-sm font-mono text-sm py-1 px-3 cursor-pointer">
+                  See which is the required installer for you
+                </span>{" "}
+              </p>
+              <br />
+              {/* <p
                 className={`mt-6 max-w-2/3 text-lg text-gray-300/80 ${inter_font.className}`}
               >
                 The output should be as follows:
               </p>
-              <CodeBlock>80</CodeBlock>
+              <CodeBlock>80</CodeBlock> */}
               <div className="grid grid-cols-2 gap-16">
-                {/* <div className="w-full bg-gray-600/40 px-4 py-2 rounded-sm">
-                  <h1>
+                <div className="w-full bg-gray-600/40 px-4 py-2 rounded-sm">
+                  <Link
+                    href={"/docs"}
+                    className="hover:text-white cursor-pointer"
+                  >
                     <span className="inline-block mr-2 text-xl text-gray-300">
                       &#8249;
                     </span>
                     Previous
-                  </h1>
-                </div> */}
-                <div></div>
+                  </Link>
+                </div>
 
                 <div className="w-full bg-gray-600/40 px-4 py-2 rounded-sm text-right">
                   <Link
-                    href={"/docs/setup"}
+                    href={"/docs/environment"}
                     className="hover:text-white cursor-pointer"
                   >
-                    Next: Setup and Installation
+                    Next: Setting up Environment
                     <span className="inline-block ml-2 text-xl text-gray-300">
                       &#8250;
                     </span>

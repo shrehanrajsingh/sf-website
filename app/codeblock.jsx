@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const CodeBlock = ({ children, language = "custom" }) => {
+const CodeBlock = ({ children, language = "custom", code }) => {
   if (typeof children === "object") {
     children = React.Children.toArray(children)
       .map((child) => {
@@ -12,6 +12,8 @@ const CodeBlock = ({ children, language = "custom" }) => {
         return child.props?.children || "";
       })
       .join("");
+  } else if (code != undefined) {
+    children = code;
   }
 
   const tokenize = (code) => {
@@ -22,7 +24,7 @@ const CodeBlock = ({ children, language = "custom" }) => {
     let currentType = null;
 
     const patterns = {
-      keyword: /^(fun|return|if|else|for|while|class)\b/,
+      keyword: /^(fun|return|if|else|for|while|class|to|in|step|repeat)\b/,
       string: /^(['"`])(?:(?=(\\?))\2.)*?\1/,
       comment: /^(\/\/.*|\/\*[\s\S]*?\*\/|#.*)/,
       number: /^-?\d+(?:\.\d+)?/,
@@ -74,38 +76,39 @@ const CodeBlock = ({ children, language = "custom" }) => {
           margin: 1.5rem 0;
         }
         .code-block {
-          background-color: #282c34;
+          background-color: #f8f8f8;
           border-radius: 6px;
           padding: 1rem;
           overflow: auto;
           margin: 0;
+          border: 1px solid #e0e0e0;
         }
         .code-block code {
           font-family: monospace;
           font-size: 14px;
           line-height: 1.5;
-          color: #abb2bf;
+          color: #333333;
         }
         .token.keyword {
-          color: #c678dd;
+          color: #8600b3;
         }
         .token.string {
-          color: #ce9178;
+          color: #a31515;
         }
         .token.comment {
-          color: #6a9955;
+          color: #008000;
         }
         .token.number {
-          color: #b5cea8;
+          color: #098658;
         }
         .token.operator {
-          color: #d4d4d4;
+          color: #5c6773;
         }
         .token.identifier {
-          color: #9cdcfe;
+          color: #0070c1;
         }
         .token.bracket {
-          color: #d4d4d4;
+          color: #5c6773;
         }
       `}</style>
       <pre className="code-block">

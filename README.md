@@ -1,6 +1,6 @@
 # Sunflower Website
 
-This repository contains the **website** for the [Sunflower programming language](github.com/csunflower).  
+This repository contains the **website** for the [Sunflower programming language](https://github.com/shrehanrajsingh/csunflower).  
 It’s a simple front-end built to showcase the language and link to its documentation.
 
 ---
@@ -38,7 +38,7 @@ Then open http://localhost:3000 with your browser to see the result.
 
 To learn more about Sunflower and explore its capabilities, check out the following resources:
 
-- Sunflower GitHub repository: [github.com/csunflower](https://github.com/csunflower.git)
+- Sunflower GitHub repository: [github.com/csunflower](https://github.com/shrehanrajsingh/csunflower)
 
 ## Contributing
 

@@ -14,11 +14,14 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Sunflower",
   description: "Made with <3 by shrehanrajsingh",
+  icons:{
+  icon:'/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

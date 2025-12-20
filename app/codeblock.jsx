@@ -1,28 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 
 const CodeBlock = ({ children, language = "custom", code }) => {
-  if (typeof children === "object") {
-    children = React.Children.toArray(children)
-      .map((child) => {
-        if (typeof child === "string" || typeof child === "number") {
-          return child;
-        }
-        return child.props?.children || "";
-      })
-      .join("");
-  } else if (code != undefined) {
-    children = code;
-  }
+  // Extracting raw text from children
+  const rawCode = useMemo(() => {
+    if (code !== undefined) return code;
+    if (typeof children === "object") {
+      return React.Children.toArray(children)
+        .map((child) => {
+          if (typeof child === "string" || typeof child === "number") {
+            return child;
+          }
+          return child.props?.children || "";
+        })
+        .join("");
+    }
+    return children || "";
+  }, [children, code]);
 
-  const tokenize = (code) => {
-    if (!code) return [];
-
-    const tokens = [];
-    let currentToken = "";
-    let currentType = null;
-
+    const tokens = useMemo(()=>{
+      if(!rawCode) return [];
+      const tokenList=[];
     const patterns = {
       keyword: /^(fun|return|if|else|for|while|class|to|in|step|repeat)\b/,
       string: /^(['"`])(?:(?=(\\?))\2.)*?\1/,
@@ -51,69 +50,40 @@ const CodeBlock = ({ children, language = "custom", code }) => {
       }
 
       if (!matched) {
-        tokens.push({ type: "plain", value: remaining[0] });
+        tokenList.push({ type: "plain", value: remaining[0] });
         remaining = remaining.slice(1);
       }
     }
+    return tokenList;
+  },[rawCode]);
 
-    return tokens;
+  // Mapped token types to Tailwind colors
+  const getTokenColor = (type) => {
+    switch (type) {
+      case "keyword": return "text-purple-600 font-bold";
+      case "string": return "text-blue-600";
+      case "comment": return "text-green-600 italic";
+      case "number": return "text-orange-600";
+      case "operator": return "text-gray-600";
+      case "identifier": return "text-indigo-600";
+      case "bracket": return "text-gray-500";
+      default: return "text-gray-800";
+    }
   };
-
-  const renderTokens = (tokens) => {
-    return tokens.map((token, index) => (
-      <span key={index} className={`token ${token.type}`}>
-        {token.value}
-      </span>
-    ));
-  };
-
-  const tokens = tokenize(children);
 
   return (
-    <div className="code-block-container">
-      <style jsx global>{`
-        .code-block-container {
-          margin: 1.5rem 0;
-        }
-        .code-block {
-          background-color: #f8f8f8;
-          border-radius: 6px;
-          padding: 1rem;
-          overflow: auto;
-          margin: 0;
-          border: 1px solid #e0e0e0;
-        }
-        .code-block code {
-          font-family: monospace;
-          font-size: 14px;
-          line-height: 1.5;
-          color: #333333;
-        }
-        .token.keyword {
-          color: #8600b3;
-        }
-        .token.string {
-          color: #a31515;
-        }
-        .token.comment {
-          color: #008000;
-        }
-        .token.number {
-          color: #098658;
-        }
-        .token.operator {
-          color: #5c6773;
-        }
-        .token.identifier {
-          color: #0070c1;
-        }
-        .token.bracket {
-          color: #5c6773;
-        }
-      `}</style>
-      <pre className="code-block">
-        <code className={`language-${language}`}>{renderTokens(tokens)}</code>
-      </pre>
+    <div className="my-6 rounded-lg overflow-hidden border border-gray-200 shadow-sm bg-gray-50">
+      <div className="overflow-x-auto p-4">
+        <pre className="font-mono text-sm leading-relaxed">
+          <code>
+            {tokens.map((token, index) => (
+              <span key={index} className={getTokenColor(token.type)}>
+                {token.value}
+              </span>
+            ))}
+          </code>
+        </pre>
+      </div>
     </div>
   );
 };

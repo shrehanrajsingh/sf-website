@@ -1,1 +1,327 @@
 @import "tailwindcss";
+
+/* Theme CSS Variables */
+:root {
+  /* Light theme (default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-tertiary: #6b7280;
+  --border-color: #e5e7eb;
+  --accent-color: #f59e0b;
+  --code-bg: #f8f8f8;
+  --code-border: #e0e0e0;
+  --navbar-bg: rgba(255, 255, 255, 0.8);
+  --card-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Gradient colors for light mode */
+  --gradient-from: #eef2ff;
+  --gradient-via: #ffffff;
+  --gradient-to: #fffbeb;
+  --blob-purple: rgba(216, 180, 254, 0.3);
+  --blob-blue: rgba(147, 197, 253, 0.2);
+  --blob-amber: rgba(252, 211, 77, 0.2);
+  --blob-green: rgba(134, 239, 172, 0.3);
+}
+
+.dark {
+  /* Dark theme */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #334155;
+  --accent-color: #fbbf24;
+  --code-bg: #1e293b;
+  --code-border: #334155;
+  --navbar-bg: rgba(15, 23, 42, 0.8);
+  --card-bg: #1e293b;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* Gradient colors for dark mode */
+  --gradient-from: #1e1b4b;
+  --gradient-via: #0f172a;
+  --gradient-to: #422006;
+  --blob-purple: rgba(126, 34, 206, 0.3);
+  --blob-blue: rgba(37, 99, 235, 0.2);
+  --blob-amber: rgba(180, 83, 9, 0.2);
+  --blob-green: rgba(21, 128, 61, 0.3);
+}
+
+/* Global theme transition */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for all theme-aware elements */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme toggle button animation */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-tertiary);
+  transform: rotate(15deg);
+}
+
+/* Dark mode specific overrides for Tailwind classes */
+.dark .bg-white {
+  background-color: var(--bg-primary) !important;
+}
+
+.dark .bg-white\/80 {
+  background-color: var(--navbar-bg) !important;
+}
+
+.dark .bg-white\/30 {
+  background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+.dark .text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-gray-800 {
+  color: var(--text-secondary) !important;
+}
+
+.dark .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+.dark .text-gray-600 {
+  color: var(--text-tertiary) !important;
+}
+
+.dark .text-gray-500 {
+  color: var(--text-tertiary) !important;
+}
+
+.dark .border-gray-200 {
+  border-color: var(--border-color) !important;
+}
+
+.dark .border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+/* Background gradient override for dark mode */
+.dark .bg-gradient-to-br {
+  background: linear-gradient(to bottom right, var(--gradient-from), var(--gradient-via), var(--gradient-to)) !important;
+}
+
+/* Blob colors for dark mode */
+.dark .bg-purple-300\/30 {
+  background-color: var(--blob-purple) !important;
+}
+
+.dark .bg-blue-300\/20 {
+  background-color: var(--blob-blue) !important;
+}
+
+.dark .bg-amber-300\/20 {
+  background-color: var(--blob-amber) !important;
+}
+
+.dark .bg-green-300\/30 {
+  background-color: var(--blob-green) !important;
+}
+
+/* Info box dark mode */
+.dark .bg-yellow-50\/80 {
+  background-color: rgba(120, 53, 15, 0.4) !important;
+}
+
+.dark .text-yellow-800 {
+  color: #fde68a !important;
+}
+
+.dark .border-yellow-400 {
+  border-color: #b45309 !important;
+}
+
+/* Code block dark mode overrides */
+.dark .code-block {
+  background-color: var(--code-bg) !important;
+  border-color: var(--code-border) !important;
+}
+
+.dark .code-block code {
+  color: #e2e8f0 !important;
+}
+
+.dark .token.keyword {
+  color: #c084fc !important;
+}
+
+.dark .token.string {
+  color: #fca5a5 !important;
+}
+
+.dark .token.comment {
+  color: #86efac !important;
+}
+
+.dark .token.number {
+  color: #6ee7b7 !important;
+}
+
+.dark .token.operator {
+  color: #94a3b8 !important;
+}
+
+.dark .token.identifier {
+  color: #7dd3fc !important;
+}
+
+.dark .token.bracket {
+  color: #94a3b8 !important;
+}
+
+/* Card backgrounds for dark mode */
+.dark .bg-gray-50 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Hover states for dark mode */
+.dark .hover\:bg-gray-100:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.dark .hover\:bg-gray-50:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Sidebar dark mode */
+.dark .bg-slate-50 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark .hover\:bg-slate-100:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.dark .bg-slate-200 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Documentation page specific dark mode styles */
+.dark .prose {
+  color: var(--text-secondary) !important;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4 {
+  color: var(--text-primary) !important;
+}
+
+.dark .prose p {
+  color: var(--text-secondary) !important;
+}
+
+.dark .prose a {
+  color: #38bdf8 !important;
+}
+
+.dark .prose code {
+  color: #fca5a5 !important;
+}
+
+/* Button styles for dark mode - keep accent colors */
+.dark .bg-amber-400 {
+  background-color: #f59e0b !important;
+}
+
+.dark .bg-green-400 {
+  background-color: #22c55e !important;
+}
+
+/* Footer and other gray backgrounds */
+.dark .bg-gray-900 {
+  background-color: #020617 !important;
+}
+
+.dark .bg-gray-800 {
+  background-color: #0f172a !important;
+}
+
+/* Documentation sidebar dark mode */
+.dark .bg-blue-100 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark .text-blue-700 {
+  color: #60a5fa !important;
+}
+
+.dark .hover\:bg-gray-200:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.dark .bg-gray-200 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Input fields dark mode */
+.dark input {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark input::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+.dark input:focus {
+  border-color: #3b82f6 !important;
+}
+
+/* Note/Warning boxes */
+.dark .bg-yellow-100 {
+  background-color: rgba(120, 53, 15, 0.3) !important;
+}
+
+.dark .border-yellow-300 {
+  border-color: #b45309 !important;
+}
+
+.dark .text-yellow-600 {
+  color: #fcd34d !important;
+}
+
+/* Links dark mode */
+.dark .text-blue-600 {
+  color: #60a5fa !important;
+}
+
+.dark .text-cyan-600 {
+  color: #22d3ee !important;
+}

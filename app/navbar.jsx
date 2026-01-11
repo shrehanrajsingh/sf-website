@@ -1,8 +1,11 @@
+"use client";
+
 import { Inter, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
 import LogoPNG from "./assets/logo_2.png";
+import ThemeToggle from "./ThemeToggle";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -40,7 +43,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className="ml-auto text-sm flex gap-4">
+      <div className="ml-auto text-sm flex gap-4 items-center">
         <h1>Login</h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +64,7 @@ export default function Navbar() {
             strokeLinecap="round"
           />
         </svg>
+        <ThemeToggle />
       </div>
     </div>
   );

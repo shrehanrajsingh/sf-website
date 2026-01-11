@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sunflower Website
 
-## Getting Started
+This repository contains the **website** for the [Sunflower programming language](https://github.com/shrehanrajsingh/sunflower-cpp.git).  
+It’s a simple front-end built to showcase the language and link to its documentation.
 
-First, run the development server:
+---
+
+## Overview
+
+This website serves as the public landing, documentation hub for the Sunflower language.  
+It provides:  
+- A concise introduction to Sunflower — its goals, syntax, and features.  
+- links to language docs.   
+- Blog and Community section.      
+- Example projects and templates
+
+---
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/)
+- CSS / Tailwind 
+- Deployed on [Vercel](https://vercel.com/)
+
+---
+
+## Local Setup
 
 ```bash
+git clone https://github.com/shrehanrajsingh/sf-website.git
+cd sf-website
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Then open http://localhost:3000 with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Resources
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+To learn more about Sunflower and explore its capabilities, check out the following resources:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Sunflower GitHub repository: [github.com/sunflower-cpp](https://github.com/shrehanrajsingh/sunflower-cpp.git)
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+We welcome contributions from the Sunflower community. If you have any bug reports, feature requests, or code improvements, please submit them via the GitHub repository.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
